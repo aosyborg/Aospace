@@ -1,0 +1,30 @@
+When critical errors occur on your website, you should know. Backtrace seeks to solve this
+problem by emailing you with a log message, full stacktrace, & a dump of all variables that
+were in the session, get, and post. This is one class you can't live without.
+
+<pre><code>
+// What you see in your inbox
+[Fri Feb 20 15:06:55 2009]: error with identifier "Project_Class"
+
+Message:
+Unable to connect to database.
+
+Output of debug_print_backtrace():
+#0  SymonsLibrary_Backtrace->log(Unable to connect to database.) called at [/var/www/project/Controller/Base.php:88]
+#1  Project_Controller_Base->connect() called at [/usr/www/project/Controller/Front.php:33]
+#2  Project_Controller_Front->pre() called at [/usr/www/project/index.php:69]
+
+$_SESSION dump:
+array(0) {
+}
+
+$_GET dump:
+array(0) {
+}
+
+$_POST dump:
+array(0) {
+}
+</code></pre>
+
+<a href="../views/scripts/index/code/backtrace/backtrace.tar">Download</a>

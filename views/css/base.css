@@ -1,0 +1,37 @@
+a {
+	color: #B80101;
+	text-decoration: none;
+}
+
+body {
+	background-color: #590100;
+	color: #B22F2F;
+	font-family: Tahoma;
+	font-size: 8pt;
+	font-stretch: expanded;
+}
+
+#content {
+	background-color: #FFFFE8;
+	border: 1px solid white;
+	color: #6C6C6C;
+	padding: 5px;
+	margin: 4em auto;
+	min-height: 350px;
+	width: 760px;
+}
+
+#footer {
+	margin: 1em auto;
+	text-align: right;
+	width: 760px;
+}
+
+.sideimage {
+	border: 1px solid #590100;
+	height: 300px;
+	left: -5px;
+	margin-bottom: 2px;
+	top: 3px;
+	width: 200px;
+}

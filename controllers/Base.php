@@ -24,17 +24,21 @@ class Aospace_Controller_Base extends Zend_Controller_Action
 		$this->config = new Zend_Config_Ini('../../webappconfig.ini', 'aospace');
 
 		/**
+		 * Set base path relative to our enviornment
+		 */
+		$this->view->root = $this->config->root;
+
+		/**
 		 * Build custom header
 		 */
 		$this->view->header = new Library_Header;
 		$this->view->header
 		           ->setProject("Aospace")
-		           ->addLinkTag("rel='stylesheet' type='text/css' href='http://library.aospace.com/css/base.css'")
+		           ->addLinkTag("rel='stylesheet' type='text/css' href='http://library.aospace.com/css/reset-fonts-grids.css'")
 		           ->addLinkTag("rel='stylesheet' type='text/css' href='http://library.aospace.com/css/library.css'")
 		           ->addLinkTag("rel='stylesheet' type='text/css' href='/views/css/base.css'")
 		           ->addScriptTag("src='http://library.aospace.com/js/jquery.min.js' type='text/javascript'")
-		           ->addScriptTag("src='http://library.aospace.com/js/jquery.curvycorners.min.js' type='text/javascript'")
-		           ->addScriptTag("src='/views/js/main.js' type='text/javascript'");
+		           ->addScriptTag("src='http://library.aospace.com/js/jquery-ui.min.js' type='text/javascript'");
 
 		/**
 		 * Attempt to handle postback

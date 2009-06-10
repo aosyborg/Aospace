@@ -1,8 +1,34 @@
-<div class="sideimage">
-	<ul class="menu">
-		<li><a href="/contact">about me</a></li>
-		<li><a href="/code">code share</a></li>
-		<li><a href="/music">music</a></li>
-		<li><a href="/contact">contact</a></li>
-	</ul>
+
+<div class="left">
+	<h1>Aospace.com</h1>
+	<div class="left-content">
+		<ul id="main-menu">
+			<li><a href="<?= $this->url(array('action'=>'about')); ?>">ABOUT ME &gt;</a></li>
+			<li><a href="<?= $this->url(array('action'=>'code')); ?>">CODE SHARE &gt;</a></li>
+			<li><a href="<?= $this->url(array('action'=>'site_status')); ?>">SITE STATUS &gt;</a></li>
+			<li><a href="http://aozaki.com">DEVELOPMENT &gt;</a></li>
+			<li><a href="<?= $this->url(array('action'=>'contact')); ?>">CONTACT &gt;</a></li>
+		</ul>
+	</div>
+
+	<div class="container">
+		<span class="red bold">Latest Updates:</span><br/><br/>
+		Aospace has been updated once again, this time using the
+		<a href="http://framework.zend.com/">Zend Framework</a>. Some things
+		have changed so I would love to hear any suggestions/comments. Thanks.
+	</div>
+</div>
+
+<div class="right">
+	<div class="photo-frame">
+		<img src="/images/sideimages/japan-train.jpg" alt="side image" />
+	</div>
+
+	<div class="quote">
+		"Perfection is achieved not when there is nothing left to add
+		but when there is nothing left to take away." <br/>
+		-- Antoine de Saint-Exupery
+	</div>
+
+	<?= $this->partial('index/_buttons.phtml'); ?>
 </div>

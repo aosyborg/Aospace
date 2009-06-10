@@ -1,0 +1,10 @@
+<pre><code>
+$header = new Library_Header;
+$header->setProject('ProjectName')
+       ->setTitle('PageTitle')
+       ->addLinkTag("rel='stylesheet' type='text/css' href='something.css'")
+       ->addLinkTag("rel='stylesheet' type='text/css' href='something.css'")
+       ->addScriptTag("src='/library/js/jquery.min.js' type='text/javascript'");
+
+$header->render();
+</pre></code>

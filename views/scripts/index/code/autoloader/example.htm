@@ -1,0 +1,10 @@
+<pre><code>
+// Include autoloader
+function __autoload($class)
+{
+	Library_Autoloader::autoload(get_class($class));
+}
+
+$var = new Project_Controller_Main; // no need for includes or requires
+//Do Stuff
+</code></pre>

@@ -1,0 +1,36 @@
+<? $this->header->setTitle("Site Status")
+                ->addLinkTag("rel='stylesheet' type='text/css' href='/views/css/sitestatus.css'")
+                ->addScriptTag("src='http://library.aospace.com/js/sorttable.js' type='text/javascript'");
+?>
+
+<h1>Site Status</h1>
+<?= $this->partial('index/_top-navbar.phtml'); ?>
+
+<table id="site-status" class="sortable">
+	<tr>
+		<th>Site</th>
+		<th>Status</th>
+		<th>Last Established Contact</th>
+	</tr>
+	<? $rowcolor = 1 ?>
+	<? foreach ($this->sites as $site): ?>
+	<tr class="<?= $rowcolor % 2 ? 'light' : 'dark' ?>">
+		<td class="site-title">
+			<a href="<?= $site->getUrl() ?>">
+				<img src="http://library.aospace.com/images/icons/world_link.png" />
+			</a>
+			<a href="<?= $site->getUrl() ?>">
+				<?= $site->getName() ?>
+			</a>
+		</td>
+		<td class="site-status <?= $site->getStatus() ?>">
+			<?= $site->getStatusMessage() ?>
+		</td>
+		<td class="site-update">
+			2009 January 11
+		</td>
+	</tr>
+	<? $rowcolor++ ?>
+	<? endforeach; ?>
+</table>
+

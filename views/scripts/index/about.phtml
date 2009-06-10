@@ -1,0 +1,29 @@
+<? $this->header->setTitle("About"); ?>
+
+<div class="left">
+	<h1>About Me</h1>
+	<div class="left-content">
+		I am a college student majoring in Computer Science. I love to travel
+		as much as possible and meet people from around the world. Friends play
+		a very important role in my life as does family. I do my best to be
+		constantly learning and share my experiences with those who will listen.
+
+	</div>
+
+	<div class="container center">
+		<?= $this->partial('index/_bottom-navbar.phtml'); ?>
+	</div>
+</div>
+
+<div class="right">
+	<div class="photo-frame">
+		<img src="/images/sideimages/about.jpg" alt="about me" />
+	</div>
+
+	<div class="quote">
+		"Not everything that counts can be counted, and not
+		everything that can be counted counts."
+	</div>
+
+	<?= $this->partial('index/_buttons.phtml'); ?>
+</div>

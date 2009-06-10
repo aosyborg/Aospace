@@ -1,0 +1,21 @@
+If you've ever done a lot of OOP you know you have to use a lot of requires and includes
+for your code to work. This class attempts to solve this by applying a strict naming
+scheme to your classes and where they are placed. As an added bonus, it is written to
+extend the Zend Framework Zend_Loader class.
+
+<pre><code>
+// Standard PHP
+function __autoload($class)
+{
+	Library_Autoloader::autoload($class);
+}
+
+// Zend Framework
+Zend_Loader::registerAutoload('Library_Autoloader');
+</code></pre>
+
+For this to work you must name your classes <em>Project_Path_To_File_ClassName</em> which would
+attempt to load the class <em>ClassName</em> located in <em>Path/To/File/ClassName.php</em>
+
+<a href="../views/scripts/index/code/autoloader/autoloader.tar">Download</a>
+<br /><br />

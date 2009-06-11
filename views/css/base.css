@@ -3,6 +3,10 @@ a {
 	text-decoration: none;
 }
 
+a:hover {
+	color: red;
+}
+
 body {
 	background-color: #590100;
 	color: #B22F2F;
@@ -18,6 +22,7 @@ body {
 	padding: 5px;
 	margin: 4em auto;
 	min-height: 350px;
+	overflow: auto;
 	width: 760px;
 }
 
@@ -28,10 +33,26 @@ body {
 }
 
 .sideimage {
+	background-color: #590100;
 	border: 1px solid #590100;
-	height: 300px;
 	left: -5px;
-	margin-bottom: 2px;
+	margin-bottom: 8px;
 	top: 3px;
 	width: 200px;
+}
+
+.sideimage ul {
+	background-color: #590100;
+	list-style-image: url('/images/arrow.jpg');
+	margin: 0px;
+}
+
+.sideimage li {
+	background-color: #590100;
+	border-bottom: 1px solid #ccc;
+	font-size: 11pt;
+	height: 20px;
+	margin-top: 0px;
+	padding-top: 2px;
+	width: 100%;
 }

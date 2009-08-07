@@ -1,0 +1,110 @@
+a {
+	color: #B80101;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a:hover {
+	color: red;
+}
+
+body {
+	background-color: #590100;
+	color: #B22F2F;
+	font-family: Tahoma;
+	font-size: 8pt;
+	font-stretch: expanded;
+}
+
+p {
+	margin-bottom: 1em;
+	margin-top: 1em;
+}
+
+h1 {
+    color: #B80101;
+}
+
+div.hr {
+	border-bottom: dotted 2px #B80101;
+	height: 0px;
+	line-height: 0px;
+	width: 520px;
+	margin: 1em;
+	margin-left: 210px;
+}
+
+div.hr-left {
+	border-left: dotted 2px #B80101;
+}
+
+#content {
+	background-color: #FFFFE8;
+	border: 1px solid white;
+	color: #6C6C6C;
+	padding: 5px;
+	margin: 4em auto;
+	min-height: 350px;
+	overflow: auto;
+	width: 760px;
+}
+
+#footer {
+	margin: 1em auto;
+	text-align: right;
+	width: 760px;
+}
+
+.plain {
+	font-weight: normal;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.sideimage {
+	background-color: #590100;
+	border: 1px solid #590100;
+	float: left;
+	left: -5px;
+	margin-bottom: 8px;
+	margin-right: 10px;
+	top: 3px;
+	width: 200px;
+}
+
+.sideimage ul {
+	background-color: #590100;
+	list-style-image: url('/images/arrow.jpg');
+	margin: 0px;
+}
+
+.sideimage li {
+	background-color: #590100;
+	border-bottom: 1px solid #ccc;
+	font-size: 11pt;
+	margin-top: 0px;
+	padding-top: 2px;
+	width: 100%;
+}
+
+div.top-menu {
+	background-color: #333;
+	margin-left: -6px;
+	padding: 5px;
+	padding-bottom: 0px;
+	width: 762px;
+}
+div.top-menu li {
+	color: #ccc;
+	display: inline;
+	font-size: 18px;
+	margin-right: 2em;
+}
+div.top-menu a {
+	color: #ccc;
+}
+div.top-menu a:hover {
+	color: #fff;
+}

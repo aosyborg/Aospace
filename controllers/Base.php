@@ -16,14 +16,9 @@ class Aospace_Controller_Base extends Zend_Controller_Action
 	public function preDispatch()
 	{
 		/**
-		 * Use one template for the entire site
-		 */
-		$this->_helper->layout->setLayout('base');
-
-		/**
 		 * Load configuration
 		 */
-		$this->config = new Zend_Config_Ini('../config.ini', 'aospace');
+		$this->config = new Zend_Config_Ini('../configs/settings.ini', 'aospace');
 
 		/**
 		 * Build custom header

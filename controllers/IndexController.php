@@ -15,16 +15,16 @@ class IndexController extends Aospace_Controller_Base
 
 	private function getTweets()
 	{
-		$twitter = new Zend_Service_Twitter($this->config->twitterUsername, $this->config->twitterPassword);
-		try { return $twitter->status->userTimeline(array('count' => $this->config->tweetsOnIndex)); }
+		$twitter = new Zend_Service_Twitter($this->config->twitter->username, $this->config->twitter->password);
+		try { return $twitter->status->userTimeline(array('count' => $this->config->twitter->tweetsOnIndex)); }
 		catch (Zend_Service_Exception $e) { return false; }
 	}
 
 	private function getFlickr()
 	{
-		$flickr = new Zend_Service_Flickr($this->config->flickrApiKey);
+		$flickr = new Zend_Service_Flickr($this->config->flickr->apiKey);
 
-		try { $results = $flickr->userSearch($this->config->flickrEmail); }
+		try { $results = $flickr->userSearch($this->config->flickr->email); }
 		catch (Zend_Service_Exception $e) { return false; }
 
 		$photos = array();
@@ -35,6 +35,6 @@ class IndexController extends Aospace_Controller_Base
 		}
 
 		shuffle($photos);
-		return array_slice($photos, 1, $this->config->photosOnIndex);
+		return array_slice($photos, 1, $this->config->flickr->photosOnIndex);
 	}
 }

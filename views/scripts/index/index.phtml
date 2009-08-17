@@ -26,8 +26,8 @@
 <div class="hr">&nbsp;</div>
 
 <div id="updates" class="right hr-left">
-	<?php if ($this->tweets === false) : ?>
-		Error retrieving tweets
+	<?php if ($this->tweets->error) : ?>
+		<div>Error retrieving tweets</div>
 	<?php else : ?>
 		<ul>
 			<?php foreach($this->tweets->status as $tweet) : ?>
@@ -41,15 +41,6 @@
 	<a href="http://www.twitter.com/aospace">see more...</a>
 </div>
 
-<?php if ($this->photos === false) : ?>
-	Error retrieving photos
-<?php else : ?>
-	<?php foreach ($this->photos as $key => $photo): ?>
-		<?php if ($key == 4) : ?><br /><?php endif ?>
-		<a href="http://www.flickr.com/photos/<?php echo $photo->ownername; ?>/<?php echo $photo->id; ?>/">
-			<img class="flickrImage" src="<?php echo $photo->Square->uri; ?>" alt="flickr photo" />
-		</a>
-	<?php endforeach ?>
-<?php endif ?>
-<br />
+
+<div id="flickrPhotos"><img src="/images/ajaxLoadingBar.gif" alt="loading" /></div>
 <a href="http://www.flickr.com/photos/<?php echo $photo->ownername; ?>">see more...</a>

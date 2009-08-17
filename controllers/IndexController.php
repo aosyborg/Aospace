@@ -7,9 +7,9 @@ class IndexController extends Aospace_Controller_Base
 	public function indexAction()
 	{
 		$this->view->header->setTitle('Home')
+		                   ->addScriptTag('src="/js/index.js"  type="text/javascript"')
 		                   ->addLinkTag('rel="stylesheet" type="text/css" href="/css/index.css"');
 
-		$this->view->photos = $this->getFlickr();
 		$this->view->tweets = $this->getTweets();
 	}
 
@@ -20,8 +20,12 @@ class IndexController extends Aospace_Controller_Base
 		catch (Zend_Service_Exception $e) { return false; }
 	}
 
-	private function getFlickr()
+	/**
+	 * Ajax call to speed up page loading
+	 */
+	public function getflickrphotosAction()
 	{
+		$this->_helper->layout()->disableLayout();
 		$flickr = new Zend_Service_Flickr($this->config->flickr->apiKey);
 
 		try { $results = $flickr->userSearch($this->config->flickr->email); }
@@ -35,6 +39,8 @@ class IndexController extends Aospace_Controller_Base
 		}
 
 		shuffle($photos);
-		return array_slice($photos, 1, $this->config->flickr->photosOnIndex);
+		$this->view->photos = array_slice($photos, 1, $this->config->flickr->photosOnIndex);
+
+		$this->render('flickrPhotos');
 	}
 }

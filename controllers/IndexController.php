@@ -15,9 +15,11 @@ class IndexController extends Aospace_Controller_Base
 
 	private function getTweets()
 	{
-		$twitter = new Zend_Service_Twitter($this->config->twitter->username, $this->config->twitter->password);
-		try { return $twitter->status->userTimeline(array('count' => $this->config->twitter->tweetsOnIndex)); }
-		catch (Zend_Service_Exception $e) { return false; }
+		try {
+			$twitter = new Zend_Service_Twitter($this->config->twitter->username, $this->config->twitter->password);
+			return $twitter->status->userTimeline(array('count' => $this->config->twitter->tweetsOnIndex));
+		}
+		catch (Exception $e) { return false; }
 	}
 
 	/**
@@ -30,6 +32,7 @@ class IndexController extends Aospace_Controller_Base
 
 		try { $results = $flickr->userSearch($this->config->flickr->email); }
 		catch (Zend_Service_Exception $e) { return false; }
+		catch (Zend_Rest_Exception $e) { return false; }
 
 		$photos = array();
 		foreach ($results as $result) {

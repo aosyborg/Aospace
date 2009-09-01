@@ -1,0 +1,28 @@
+a {
+	color: #6C6C6C;
+	font-weight: normal;
+}
+
+a:hover {
+	color: black;
+}
+
+h3 {
+	margin-bottom: 0px;
+}
+
+hr {
+	clear: both;
+}
+
+ul {
+	list-style: none;
+}
+
+#education {
+	width: 400px;
+}
+
+ul.bullets {
+	list-style-type: disc;
+}

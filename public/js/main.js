@@ -13,4 +13,16 @@ $(document).ready(function(){
 		br: false
 	});
 
+	/**
+	 * Add click handlers to ie and no script notices
+	 */
+	$('.cornerx').click(function() {
+			$(this).parent().slideUp();
+	});
+
+	/**
+	 * Hide no script
+	 */
+	$('#noscript').hide();
+
 });

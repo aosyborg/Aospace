@@ -63,6 +63,29 @@ div.hr-left {
 	font-weight: bold;
 }
 
+.notice {
+	border: 1px solid #F7941D;
+	background-color: #FEEFDA;
+	height: 75px;
+	margin: 1em auto;
+	width: 635px;
+}
+
+.notice .content {
+	float: left;
+	margin-left: 10px;
+	margin-right: 50px;
+}
+
+.notice img {
+	border: 0px;
+}
+
+.cornerx {
+	float: right;
+	cursor: pointer;
+}
+
 .sideimage {
 	background-color: #590100;
 	border: 1px solid #590100;

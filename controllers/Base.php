@@ -11,17 +11,15 @@
 
 class Aospace_Controller_Base extends Zend_Controller_Action
 {
+	protected $config;
+
 	public function preDispatch()
 	{
 		/**
-		 * Use one template for the entire site
-		 */
-		$this->_helper->layout->setLayout('base');
-
-		/**
 		 * Load configuration
 		 */
-		$this->config = new Zend_Config_Ini('../../webappconfig.ini', 'aospace');
+		$this->session = new Zend_Session_Namespace('aospace');
+		$this->config  = new Zend_Config_Ini('../configs/settings.ini', 'aospace');
 
 		/**
 		 * Set base path relative to our enviornment
@@ -34,33 +32,39 @@ class Aospace_Controller_Base extends Zend_Controller_Action
 		$this->view->header = new Library_Header;
 		$this->view->header
 		           ->setProject("Aospace")
-		           ->addLinkTag("rel='stylesheet' type='text/css' href='http://library.aospace.com/css/reset-fonts-grids.css'")
-		           ->addLinkTag("rel='stylesheet' type='text/css' href='http://library.aospace.com/css/library.css'")
-		           ->addLinkTag("rel='stylesheet' type='text/css' href='/views/css/base.css'")
+		           ->addLinkTag("rel='stylesheet' type='text/css' href='http://library.aospace.com/css/base.css'")
+		           //->addLinkTag("rel='stylesheet' type='text/css' href='http://library.aospace.com/css/library.css'")
+		           ->addLinkTag("rel='stylesheet' type='text/css' href='http://aozaki.com/library/css/library.css'")
+		           ->addLinkTag("rel='stylesheet' type='text/css' href='/css/base.css'")
 		           ->addScriptTag("src='http://library.aospace.com/js/jquery.min.js' type='text/javascript'")
-		           ->addScriptTag("src='http://library.aospace.com/js/jquery-ui.min.js' type='text/javascript'");
+		           ->addScriptTag("src='http://library.aospace.com/js/jquery.curvycorners.min.js' type='text/javascript'")
+		           ->addScriptTag("src='/js/main.js' type='text/javascript'");
 
 		/**
-		 * Attempt to handle postback
-		 * if $_POST['action'] = submit then the _submitPOST() function
-		 * is called. If the function does not exist, pass.
+		 * Generic container for application notifications
 		 */
-		if (array_key_exists('action', $_POST)) {
-			if (method_exists($this, "_{$_POST['action']}POST")) {
-				eval("\$this->_{$_POST['action']}POST();");
-			}
-		}
+		$this->view->errors    = new Library_Messagebox('error');
+		$this->view->successes = new Library_Messagebox('success');
+		$this->view->notices   = new Library_Messagebox('notice');
 
-		/**
-		 * Attempt to handle GET requests
-		 * if $_GET['action'] = submit then the _submitGET() function
-		 * is called. If the function does not exist, pass.
-		 */
-		if (array_key_exists('action', $_GET)) {
-			if (method_exists($this, "_{$_GET['action']}GET")) {
-				eval("\$this->_{$_POST['action']}GET();");
+		// Populate notifications if applicable
+		$messenger = $this->_helper->getHelper('FlashMessenger');
+		foreach($messenger->getMessages() as $message) {
+			$type = key($message);
+			$message = current($message);
+			switch ($type) {
+				case 'error': $this->view->errors->addMessage($message);      break;
+				case 'success': $this->view->successes->addMessage($message); break;
+				default: $this->view->notices->addMessage($message);          break;
 			}
 		}
+	}
+
+	public function postDispatch()
+	{
+		/**
+		 * Clean up session
+		 */
 	}
 }
 

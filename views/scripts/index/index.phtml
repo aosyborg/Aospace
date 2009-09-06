@@ -1,34 +1,46 @@
+<div class="sideimage">
+	<img src="/images/sideimage-road.jpg" alt="sideimage" />
+	<ul class="menu">
+		<li><a class="plain" href="<?php echo $this->url(array('controller' => 'about')); ?>">about</a></li>
+		<li><a class="plain" href="<?php echo $this->url(array('controller' => 'projects')); ?>">projects</a></li>
+		<li><a class="plain" href="<?php echo $this->url(array('controller' => 'resume')); ?>">resume</a></li>
+		<li><a class="plain" href="<?php echo $this->url(array('controller' => 'contact')); ?>">contact</a></li>
+	</ul>
+</div>
 
-<div class="left">
-	<h1>Aospace.com</h1>
-	<div class="left-content">
-		<ul id="main-menu">
-			<li><a href="<?= $this->url(array('action'=>'about')); ?>">ABOUT ME &gt;</a></li>
-			<li><a href="<?= $this->url(array('action'=>'code')); ?>">CODE SHARE &gt;</a></li>
-			<li><a href="<?= $this->url(array('action'=>'site_status')); ?>">SITE STATUS &gt;</a></li>
-			<li><a href="http://aozaki.com">DEVELOPMENT &gt;</a></li>
-			<li><a href="<?= $this->url(array('action'=>'contact')); ?>">CONTACT &gt;</a></li>
+<img id="top-right" src="/images/indexTopRight.jpg" />
+
+<h1>Welcome to Aospace!</h1>
+<p class="bold">
+	Aospace is a personal website created to express my interest in web design
+	&amp; web programming.
+</p>
+<p>
+	This site goes through many redesigns as my programming ability develops.
+	At the very least, I hope this site will give insperation to what can be done when
+	you put your mind to something.
+</p>
+
+<a href="<?php echo $this->url(array('controller' => 'about')); ?>">read more...</a>
+
+<div class="hr">&nbsp;</div>
+
+<div id="updates" class="right hr-left">
+	<?php if ($this->tweets->error) : ?>
+		<div>Error retrieving tweets</div>
+	<?php else : ?>
+		<ul>
+			<?php foreach($this->tweets->status as $tweet) : ?>
+			<li>
+				<?php echo $tweet->text; ?><br />
+				<?php echo $this->tweet->created_at; ?>
+			</li>
+			<?php endforeach ?>
 		</ul>
-	</div>
-
-	<div class="container">
-		<span class="red bold">Latest Updates:</span><br/><br/>
-		Aospace has been updated once again, this time using the
-		<a href="http://framework.zend.com/">Zend Framework</a>. Some things
-		have changed so I would love to hear any suggestions/comments. Thanks.
-	</div>
+	<?php endif ?>
+	<a href="http://www.twitter.com/aospace">see more...</a>
 </div>
 
-<div class="right">
-	<div class="photo-frame">
-		<img src="/images/sideimages/japan-train.jpg" alt="side image" />
-	</div>
 
-	<div class="quote">
-		"Perfection is achieved not when there is nothing left to add
-		but when there is nothing left to take away." <br/>
-		-- Antoine de Saint-Exupery
-	</div>
-
-	<?= $this->partial('index/_buttons.phtml'); ?>
-</div>
+<div id="flickrPhotos"><img src="/images/ajaxLoadingBar.gif" alt="loading" /></div>
+<a href="http://www.flickr.com/photos/<?php echo $photo->ownername; ?>">see more...</a>

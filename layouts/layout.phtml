@@ -5,24 +5,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<? foreach ($this->header->getLinkTags() as $link): ?>
-		<link <?= $link; ?> />
-		<? endforeach; ?>
+		<?php foreach ($this->header->getLinkTags() as $link): ?>
+		<link <?php echo $link; ?> />
+		<?php endforeach; ?>
 
-		<? foreach ($this->header->getScriptTags() as $script): ?>
-		<script <?= $script; ?>></script>
-		<? endforeach; ?>
+		<?php foreach ($this->header->getScriptTags() as $script): ?>
+		<script <?php echo $script; ?>></script>
+		<?php endforeach; ?>
 
 		<title>
 			Symons ::
-			<?= $this->header->getProject(); ?> ::
-			<?= $this->header->getTitle(); ?>
+			<?php echo $this->header->getProject(); ?> ::
+			<?php echo  $this->header->getTitle(); ?>
 		</title>
 	</head>
 
 	<body>
+		<!-- [if IE]>
+		<?php echo $this->partial('_noIE.phtml'); ?>
+		<![endif]-->
+
+		<!-- No script -->
+		<?php echo $this->partial('_noScript.phtml'); ?>
+
 		<div id="content">
-			<?= $this->layout()->content ?>
+			<?php echo $this->layout()->content ?>
 		</div>
 
 		<hr id="footer" />

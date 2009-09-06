@@ -6,52 +6,44 @@ class IndexController extends Aospace_Controller_Base
 {
 	public function indexAction()
 	{
+		$this->view->header->setTitle('Home')
+		                   ->addScriptTag('src="/js/index.js"  type="text/javascript"')
+		                   ->addLinkTag('rel="stylesheet" type="text/css" href="/css/index.css"');
+
+		$this->view->tweets = $this->getTweets();
 	}
 
-	public function aboutAction()
+	private function getTweets()
 	{
+		try {
+			$twitter = new Zend_Service_Twitter($this->config->twitter->username, $this->config->twitter->password);
+			return $twitter->status->userTimeline(array('count' => $this->config->twitter->tweetsOnIndex));
+		}
+		catch (Exception $e) { return false; }
 	}
 
-	public function codeAction()
+	/**
+	 * Ajax call to speed up page loading
+	 */
+	public function getflickrphotosAction()
 	{
-	}
+		$this->_helper->layout()->disableLayout();
+		$flickr = new Zend_Service_Flickr($this->config->flickr->apiKey);
 
-	public function sitestatusAction()
-	{
-		$this->view->sites = Aospace_Sites::fetch(Aospace_Sites::ALL);
-	}
+		try { $results = $flickr->userSearch($this->config->flickr->email); }
+		catch (Zend_Service_Exception $e) { return false; }
+		catch (Zend_Rest_Exception $e) { return false; }
 
-	public function contactAction()
-	{
-	}
-
-	protected function _contactPOST()
-	{
-		if (!array_key_exists('name', $_POST) ||
-		    !array_key_exists('email', $_POST) ||
-		    !array_key_exists('comments', $_POST)) {
-			$_SESSION['error'] = "Invalid form submitted";
-			return;
+		$photos = array();
+		foreach ($results as $result) {
+			if ($result->ispublic) {
+				$photos[] = $result;
+			}
 		}
 
-		if ($_POST['name'] == '' || $_POST['email'] == '' || $_POST['comments'] == '') {
-			$_SESSION['error'] = "Please fill out all fields";
-			return;
-		}
+		shuffle($photos);
+		$this->view->photos = array_slice($photos, 1, $this->config->flickr->photosOnIndex);
 
-		$to = "symons@aospace.com";
-		$subject = "Mail from Aospace";
-		$headers = ("reply-to: {$_POST['email']}\n");
-		$message = "
-Name: {$_POST['name']}
-Comments: {$_POST['comments']}";
-
-		// Send the message!
-		$success = mail($to, $subject, $message, $headers);
-
-		if ($success)
-			$_SESSION['success'] = "mail successfully delivered";
-		else
-			$_SESSION['error'] = "problem mailing";
+		$this->render('flickrPhotos');
 	}
 }

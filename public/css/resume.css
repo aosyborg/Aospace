@@ -1,0 +1,36 @@
+a {
+	color: #6C6C6C;
+	font-weight: normal;
+}
+
+a:hover {
+	color: black;
+}
+
+.top-menu a {
+	font-weight: bold;
+}
+
+fieldset {
+	width: 250px;
+}
+
+h3 {
+	margin-bottom: 0px;
+}
+
+hr {
+	clear: both;
+}
+
+ul {
+	list-style: none;
+}
+
+#experience ul {
+	margin-bottom: 10px;
+}
+
+ul.bullets {
+	list-style-type: disc;
+}
